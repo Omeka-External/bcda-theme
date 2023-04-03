@@ -1,0 +1,66 @@
+@charset 'utf-8';
+
+@import 'globals-default';
+@import 'globals-bcda';
+@import 'settings';
+
+// BCDA Settings
+$button-background: #4B4A29;
+$button-color: #fff;
+$button-radius: 4px;
+$header-font-family: 'Libre Franklin', sans-serif;
+$header-font-weight: 600;
+$menu-item-background-active: transparent;
+$topbar-background: transparent;
+
+@import 'foundation-core';
+@import 'omeka';
+
+// Header
+
+#global-topbar {
+  background-color: $dark-gray;
+}
+
+#global-topbar a {
+  color: #fff;
+}
+
+.title-bar {
+  padding: $global-padding;
+}
+
+.menu a {
+  font-family: $header-font-family;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+#responsive-menu a {
+  color: #000;
+}
+
+// Content
+
+#content > h2:first-child,
+.resource-title h2 {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+// Page Blocks
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+// Faceted Browse
+
+.faceted-browse-page.browse .resource-list .resource-link img {
+  float: left;
+  margin: 1px $global-margin $global-margin 1px;
+}
