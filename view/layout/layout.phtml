@@ -10,7 +10,7 @@ $this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
 if (isset($stylesheet)) {
     $this->headLink()->appendStylesheet($this->assetUrl("css/$stylesheet.css"));    
 } else {
-    $this->headLink()->appendStylesheet($this->assetUrl('css/default.css'));
+    $this->headLink()->prependStylesheet($this->assetUrl('css/bcda.css'));
 }
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
@@ -67,21 +67,38 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
         <div class="off-canvas-content" data-off-canvas-content>
             <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
             <?php echo $userBar; ?>
-            <header>
-                <?php if ($navLayout == 'vertical'): ?>
-                <?php echo $this->partial('common/header-vertical'); ?>
-                <?php else: ?>
-                <?php echo $this->partial('common/header-dropdown'); ?>
-                <?php endif; ?>
-            </header>
-            <?php if ($banner && ($navLayout == 'dropdown')): ?>
-            <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
-            <?php endif; ?>
-            <div id="content" role="main">
-                <?php if ($banner && ($navLayout == 'vertical')): ?>
+            <div class="grid-container">
+                <header>
+                    <div id="global-topbar" class="top-bar">
+                        <nav class="top-bar-left">
+                            <ul class="menu">
+                                <li><a href="#">Archive</a></li>
+                                <li><a href="#">Craftspeople</a></li>
+                                <li><a href="#">Objects</a></li>
+                            </ul>
+                        </nav>
+                        <div class="top-bar-right">
+                            <div class="search">
+                            <?php echo $this->partial('common/search-form'); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if ($navLayout == 'vertical'): ?>
+                    <?php echo $this->partial('common/header-vertical'); ?>
+                    <?php else: ?>
+                    <?php echo $this->partial('common/header-dropdown'); ?>
+                    <?php endif; ?>
+                </header>
+                <?php if ($banner && ($navLayout == 'dropdown')): ?>
                 <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
                 <?php endif; ?>
-                <?php echo $this->content; ?>
+                <div id="content" role="main">
+                    <?php if ($banner && ($navLayout == 'vertical')): ?>
+                    <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
+                    <?php endif; ?>
+                    <?php echo $this->content; ?>
+                </div>
             </div>
             <footer>
                 <?php if ($footerContent = $this->themeSetting('footer')): ?>
