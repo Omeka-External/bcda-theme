@@ -29,6 +29,8 @@ $topbar-background: transparent;
 body.dropdown-menu .banner.contained {
   margin: 0;
   max-height: 15em;
+  max-width: none;
+  display: block;
 
   &:after {
     content: "";
