@@ -26,8 +26,49 @@ $topbar-background: transparent;
   color: #fff;
 }
 
+body.dropdown-menu .banner.contained {
+  margin: 0;
+  max-height: 15em;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba($primary-color,.3); 
+  }
+}
+
 .title-bar {
   padding: $global-padding;
+}
+
+.title-bar.desktop {
+  padding: 0;
+  position: relative;
+}
+
+.title-bar.desktop .site-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.title-bar.desktop .site-title a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: $global-padding;
+  color: #fff;
+}
+
+.title-bar.desktop .site-title .site-title-label {
+  background-color: $primary-color;
+  padding: .25 * $global-padding;
 }
 
 .menu a {
@@ -63,4 +104,15 @@ $topbar-background: transparent;
 .faceted-browse-page.browse .resource-list .resource-link img {
   float: left;
   margin: 1px $global-margin $global-margin 1px;
+}
+
+// Item Carousel
+
+.slick-slide > .slide-text {
+  height: 100%;
+  width: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,.8);
 }
