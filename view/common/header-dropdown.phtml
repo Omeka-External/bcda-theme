@@ -1,7 +1,17 @@
+<?php
+$banner = $this->themeSettingAssetUrl('banner');
+$bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
+$bannerHeight = $this->themeSetting('banner_height');
+$bannerHeightMobile = $this->themeSetting('banner_height_mobile');
+$bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
+?>
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
     <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
 </div>
-<div class="title-bar">
+<div class="title-bar desktop">
+    <?php if ($banner): ?>
+    <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
+    <?php endif; ?>
     <?php $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo" alt="">' : ''; ?>
     <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $site->title(); ?></span></a></h1> 
 </div>
