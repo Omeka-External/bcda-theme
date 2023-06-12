@@ -5,7 +5,7 @@ $bannerHeight = $this->themeSetting('banner_height');
 $bannerHeightMobile = $this->themeSetting('banner_height_mobile');
 $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
 ?>
-<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
+<div class="title-bar mobile" data-responsive-toggle="responsive-menu" data-hide-for="large">
     <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
 </div>
 <div class="title-bar desktop">
