@@ -61,7 +61,7 @@ endif;
 
     <?php echo $this->htmlElement('body'); ?>
     
-        <div id="offCanvas" class="off-canvas position-left" data-off-canvas>
+        <div id="offCanvas" class="off-canvas position-right" data-off-canvas>
             <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
             <div class="search">
                 <?php echo $this->partial('common/search-form'); ?>
@@ -72,7 +72,7 @@ endif;
             <?php echo $userBar; ?>
             <div class="grid-container">
                 <header>
-                    <div id="global-topbar" class="top-bar">
+                    <div id="global-topbar" class="top-bar show-for-large">
                         <nav class="top-bar-left">
                             <ul class="menu">
                                 <li><a href="#">Archive</a></li>
