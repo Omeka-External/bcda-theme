@@ -95,15 +95,21 @@ body.dropdown-menu .banner.contained {
 
 // Page Blocks
 
+.page-layout-normal .featured.block-layout-alignment-right, 
+.page-layout-normal .featured.block-layout-alignment-left {
+  overflow: visible;
+}
+
 .page-title {
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.featured .asset {
+.featured .assets .asset {
   position: relative;
   display: inline-block;
+  padding: 0 2rem 2rem;
 }
 
 .featured .asset img {
@@ -113,14 +119,21 @@ body.dropdown-menu .banner.contained {
 .featured .asset:after {
   content: "";
   position: absolute;
-  bottom: -4rem;
-  left: -2rem;
-  height: 6rem;
-  width: calc(100% + 4rem);
+  bottom: -1rem;
+  left: 0;
+  height: 4.5rem;
+  width: 100%;
   background-image: url(../img/featured-shape.svg);
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
+}
+
+@include breakpoint(small down) {
+  .featured .asset:after {
+    height: 2rem;
+    bottom: 1rem;
+  }
 }
 
 // Faceted Browse
