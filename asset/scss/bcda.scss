@@ -101,6 +101,28 @@ body.dropdown-menu .banner.contained {
   text-transform: uppercase;
 }
 
+.featured .asset {
+  position: relative;
+  display: inline-block;
+}
+
+.featured .asset img {
+  box-shadow: 0 10px 7px rgba(0,0,0,.4);
+}
+
+.featured .asset:after {
+  content: "";
+  position: absolute;
+  bottom: -4rem;
+  left: -2rem;
+  height: 6rem;
+  width: calc(100% + 4rem);
+  background-image: url(../img/featured-shape.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
 // Faceted Browse
 
 .faceted-browse-page.browse .resource-list .resource-link img {
