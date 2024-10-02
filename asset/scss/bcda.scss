@@ -26,6 +26,18 @@ header {
 #global-topbar,
 .global-topbar-mobile {
   background-color: $dark-gray;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: -9999px;
+    right: -9999px;
+    top: 0;
+    bottom: 0;
+    background-color: $dark-gray;
+    z-index: -1;
+  }
 }
 
 .global-topbar-mobile li {
@@ -35,6 +47,13 @@ header {
 #global-topbar a,
 .global-topbar-mobile a {
   color: #fff;
+}
+
+.global-logo img {
+  max-height: 4rem;
+  margin: -.5rem 0 -2rem;
+  position: relative;
+  z-index: 3;
 }
 
 .title-bar.mobile {
