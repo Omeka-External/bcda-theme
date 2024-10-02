@@ -2,15 +2,13 @@
 $this->headScript()->appendFile($this->assetUrl('js/browse.js'));
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
-$layoutSetting = $this->themeSetting('browse_layout', 'grid');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $currentLayout = (strpos($layoutSetting, 'grid') !== false) ? 'grid' : 'list';
 $isGrid = ($currentLayout == 'grid') ? true : false;
 $queryUrl = $this->url(
-    'site/resource', ['controller' => $this->resourceType, 'action' => 'browse'], ['query' => $this->query], true
+    'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
 );
-$resources = $this->resources;
 $resourcesCount = count($resources);
 $bodyTruncate = $this->themeSetting('truncate_body_property');
 
@@ -20,12 +18,12 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="preview-block">
 
-<?php if ($this->heading): ?>
+<?php if ($previewTitle || $linkText): ?>
 <div class="preview-header">
-    <h3><?php echo $this->hyperlink($this->heading, $queryUrl); ?></h3>
+    <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
     <?php
     if ($this->linkText):
-        echo $this->hyperlink($this->linkText, $queryUrl);
+        echo $this->hyperlink($linkText, $queryUrl);
     endif;
     ?>
 </div>
@@ -43,9 +41,6 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 
 <ul class="resources resource-count-<?php echo $resourcesCount; ?> <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
-$showThumbnail = in_array('thumbnail', $this->components);
-$showHeading = in_array('resource-heading', $this->components);
-$showBody = in_array('resource-body', $this->components);
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 foreach ($resources as $resource):
@@ -54,28 +49,23 @@ foreach ($resources as $resource):
     $body = $bodyTerm ? $resource->value($bodyTerm, ['lang' => $valueLang]) : $resource->displayDescription(null, $valueLang);
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($showThumbnail && $thumbnail): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'resource-link']); ?>
-        </div>
-        <?php endif; ?>
+        <?php if ($showHeading || $showThumbnail || $showBody): ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php if ($showHeading): ?>
-            <h4><?php echo $resource->link($heading); ?></h4>
-            <?php endif;?>
+            <?php
+                $thumbnailContent = ($showThumbnail && $thumbnail) ? $thumbnail : '';
+                $headingContent = ($showHeading) ? $escape($heading) : '';
+                $linkContent = sprintf('%s<span class="resource-name">%s</span>',
+                    $thumbnailContent,
+                    $headingContent);
+                echo $resource->linkRaw($linkContent, null, ['class' => 'resource-link']);
+            ?>
             <?php if ($showBody && $body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>
         </div>
+        <?php endif; ?>
     </li>
-
 <?php endforeach; ?>
 </ul>
-
-<?php
-if ($this->linkText && !$this->heading):
-    echo $this->hyperlink($this->linkText, $queryUrl);
-endif;
-?>
 
 </div>
