@@ -25,6 +25,7 @@ if ($userBar) {
   $this->htmlElement('body')->appendAttribute('class', 'user-bar');
 }
 
+$logo = $this->themeSettingAssetUrl('logo');
 $banner = $this->themeSettingAssetUrl('banner');
 $bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
 $bannerHeight = $this->themeSetting('banner_height');
@@ -70,6 +71,9 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
                 <header>
                     <div id="global-topbar" class="top-bar show-for-large">
                         <nav class="top-bar-left">
+                            <?php if ($logo): ?>
+                            <a class="global-logo" href="<?php echo $site->url(); ?>"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt=""></a>
+                            <?php endif; ?>
                             <ul class="menu">
                                 <li><a href="#">Archive</a></li>
                                 <li><a href="#">Craftspeople</a></li>
@@ -83,10 +87,10 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
                         </div>
                     </div>
 
-                                        <?php echo $this->partial('common/header-dropdown'); ?>
-                                    </header>
+                    <?php echo $this->partial('common/header-dropdown'); ?>
+                </header>
                 <div id="content" role="main">
-                                        <?php echo $this->content; ?>
+                    <?php echo $this->content; ?>
                 </div>
             </div>
             <footer>
