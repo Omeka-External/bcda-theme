@@ -82,7 +82,7 @@ body.dropdown-menu .banner.contained {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba($primary-color,.3); 
+    background-color: rgba($secondary-color,.3); 
   }
 }
 
@@ -120,12 +120,16 @@ body.dropdown-menu .banner.contained {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: $global-padding;
   color: #fff;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 1.3125 * $global-font-size;
 }
 
 .title-bar.desktop .site-title .site-title-label {
-  background-color: $primary-color;
+  background-color: $secondary-color;
   padding: .25 * $global-padding;
 }
 
@@ -136,8 +140,15 @@ body.dropdown-menu .banner.contained {
   font-size: 14px;
 }
 
-#responsive-menu a {
+#responsive-menu {
+  width: 100%;
+  justify-content: center;
+}
+
+#responsive-menu .menu a {
   color: #000;
+  font-size: 1.125 * $global-font-size;
+  text-transform: none;
 }
 
 // Content
@@ -208,4 +219,13 @@ body.dropdown-menu .banner.contained {
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0,.8);
+}
+
+.slick-list {
+  padding: $global-padding 0;
+}
+
+.slick-slider img {
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 3px #333;
 }
