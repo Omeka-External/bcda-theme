@@ -12,9 +12,23 @@ $header-font-family: 'Libre Franklin', sans-serif;
 $header-font-weight: 600;
 $menu-item-background-active: transparent;
 $topbar-background: transparent;
+$label-color: #fff;
 
 @import 'foundation-core';
 @import 'omeka';
+
+$label-color: #fff;
+
+// Global
+
+body {
+  overflow-x: hidden;
+}
+
+.field-meta label,
+.field-meta .label {
+    color: $label-color;
+}
 
 // Header
 
@@ -212,13 +226,24 @@ body.dropdown-menu .banner.contained {
 
 // Item Carousel
 
+.slick-slider {
+  background: rgba(0,0,0,.8);
+}
+
+.slick-next .slick-next-icon::before, 
+.slick-next .slick-prev-icon::before, 
+.slick-prev .slick-next-icon::before, 
+.slick-prev .slick-prev-icon::before,
+.slick-slide a {
+  color: #fff;
+}
+
 .slick-slide > .slide-text {
   height: 100%;
   width: 100%;
   display: block;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,.8);
 }
 
 .slick-list {
