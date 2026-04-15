@@ -6,7 +6,7 @@ $bannerHeightMobile = $this->themeSetting('banner_height_mobile');
 $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
 ?>
 <div class="title-bar mobile" data-responsive-toggle="responsive-menu" data-hide-for="large">
-    <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
+    <button class="menu-toggle button" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
 </div>
 <div class="title-bar desktop">
     <?php if ($banner): ?>
@@ -16,9 +16,6 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
 </div>
 <div class="top-bar">
     <nav class="top-bar-left" aria-label="<?php echo $this->translate('Mobile navigation'); ?>">
-        <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
-            <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
-        </div>
         <?php if (!$banner): ?>
         <?php $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo" alt="">' : ''; ?>
         <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $this->escapeHtml($site->title()); ?></span></a></h1>

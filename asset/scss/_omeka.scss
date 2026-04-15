@@ -11,6 +11,11 @@
 // #. Global Styles
 // ------------------
 
+input::placeholder {
+  color: $dark-gray;
+  font-style: italic;
+}
+
 [type="submit"], 
 [type="button"] {
   display: inline-block;
@@ -136,8 +141,23 @@ body.vertical-menu #user-bar ~ #content {
   margin-bottom: 0;
 }
 
-.search-form {
+#search-form {
   display: flex;
+}
+
+#offCanvas #search-form {
+  padding: $global-padding;
+}
+
+#fulltext-search {
+  margin: 0;
+  height: auto;
+  width: 100%;
+}
+
+#search-submit {
+  @include button();
+  margin-bottom: 0;
 }
 
 .site-title img {
@@ -190,6 +210,10 @@ h1.site-title {
 
 #offCanvas .search {
   margin: $global-margin;
+}
+
+#dropdown-bar #main-nav {
+  margin-right: $global-margin;
 }
 
 header .top-bar-right,
