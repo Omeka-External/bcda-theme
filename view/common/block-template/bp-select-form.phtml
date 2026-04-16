@@ -1,0 +1,34 @@
+<?php
+$previewTitle = $this->heading;
+$linkText = $this->linkText;
+$controller = $this->resourceType;
+$queryUrl = $this->url(
+    'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
+);
+?>
+<div class="select-browse-preview">
+<?php if ($previewTitle || $linkText): ?>
+<div class="preview-header">
+    <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
+    <?php
+    if ($this->linkText):
+        echo $this->hyperlink($linkText, $queryUrl);
+    endif;
+    ?>
+</div>
+<?php endif; ?>
+
+<form>
+    <select>
+    <?php 
+        $headingTerm = $this->siteSetting('browse_heading_property_term');
+        foreach ($resources as $resource) {
+            $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $resource->displayTitle(null, $valueLang);
+            echo '<option>' . $heading . '</option>';
+        }    
+    ?>
+    </select> 
+    <button type="button" class="button">Find by selection</button>
+</form>
+
+</div>

@@ -180,6 +180,14 @@ body.dropdown-menu .banner.contained {
 
 // Page Blocks
 
+.break.opaque {
+  border-top: 2px solid #000;
+}
+
+.block-layout-alignment-text-center .preview-header {
+  justify-content: center;
+}
+
 .page-layout-normal .featured.block-layout-alignment-right, 
 .page-layout-normal .featured.block-layout-alignment-left {
   overflow: visible;
@@ -214,11 +222,44 @@ body.dropdown-menu .banner.contained {
   z-index: -1;
 }
 
-@include breakpoint(small down) {
+@include breakpoint(medium down) {
   .featured .asset:after {
-    height: 2rem;
-    bottom: 1rem;
+    height: 30%;
+    bottom: 0rem;
   }
+}
+
+.featured .preview-header {
+  border-bottom: 0;
+  margin-bottom: 2rem;
+}
+
+.featured .resource-link img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 auto -2rem;
+  padding: 0;
+  position: relative;
+  border: 0;
+}
+
+.featured .resource-meta {
+  background-color: #2D2D2D;
+  color: #BDBDBD;
+  border-radius: 15px 15px 15px 15px;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.featured .resource-meta h4 {
+  font-size: 1.25rem;
+}
+
+.featured .resource-meta h4 a {
+  color: #fff;
 }
 
 // Faceted Browse
@@ -257,4 +298,22 @@ body.dropdown-menu .banner.contained {
 .slick-slider img {
   border: 1px solid #ccc;
   box-shadow: 0 3px 3px #333;
+}
+
+// Home
+
+.home.page .blocks h2 {
+  font-size: 1.75rem;
+}
+
+#home-search,
+.select-browse-preview {
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 7px 7px 7px 7px;
+}
+
+.home-browse-by h3 {
+  font-size: 1.5rem;
 }
