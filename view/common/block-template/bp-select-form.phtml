@@ -5,30 +5,34 @@ $controller = $this->resourceType;
 $queryUrl = $this->url(
     'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
 );
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+$valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="select-browse-preview">
-<?php if ($previewTitle || $linkText): ?>
-<div class="preview-header">
-    <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
-    <?php
-    if ($this->linkText):
-        echo $this->hyperlink($linkText, $queryUrl);
-    endif;
-    ?>
-</div>
-<?php endif; ?>
-
-<form>
-    <select>
+<form aria-label="Select '<?php echo $previewTitle; ?>' to browse" action="<?php echo  $this->url('site/resource', ['controller' => 'item', 'action' => 'browse'], [], true); ?>">
+    <?php if ($previewTitle || $linkText): ?>
+        <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
+        <?php echo ($linkText) ? $this->hyperlink($linkText, $queryUrl) : ''; ?>
+    <?php else: ?>
+        <h3>Select to browse</h3>
+    <?php endif; ?>
+    <?php if ($controller == 'item'): ?>
+    <input type="hidden" name="property[0][property]" value="">
+    <input type="hidden" name="property[0][type]" value="res">
+    <select name="property[0][text]">
+    <?php else: ?>
+    <select name="item_set_id">
+    <?php endif; ?>
     <?php 
         $headingTerm = $this->siteSetting('browse_heading_property_term');
         foreach ($resources as $resource) {
             $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $resource->displayTitle(null, $valueLang);
-            echo '<option>' . $heading . '</option>';
+            echo '<option value="' . $resource->id() . '">' . $heading . '</option>';
         }    
     ?>
     </select> 
-    <button type="button" class="button">Find by selection</button>
+    <button type="submit" class="button">Find by selection</button>
 </form>
 
 </div>
